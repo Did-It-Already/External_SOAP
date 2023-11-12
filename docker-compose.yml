@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  soapnode:
+    image: jyarac/soap-node
+    container_name: soap-service
+    ports:
+      - 3010:3010
+  notification:
+    image: jyarac/notification-ms
+    container_name: notification-microservice
+    ports:
+      - "3000:3000"
+  consumir:
+    image: soap:latest
+    container_name: consumir
+    ports:
+      - "3050:3050" 
