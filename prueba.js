@@ -4,6 +4,16 @@ var app = express();
 const port = 3050;
 const wsdlUrl = "http://soapnode:3010/wsdl?wsdl"; 
 
+// Enable CORS for all routes
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://localhost:2512');
+  // You can set other CORS headers as needed
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 const createClientAsync = async () => {
   try {
     const client = await soap.createClientAsync(wsdlUrl);
